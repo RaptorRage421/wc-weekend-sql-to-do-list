@@ -38,6 +38,8 @@ function submitTodo(event) {
     toDoHolding.isUrgent = urgentInput
     console.log("todo object,", toDoHolding)
     addTodos(toDoHolding)
+    document.getElementById('todo_text').value = ""
+    document.getElementById('isUrgent').checked = false
 }
 
 
