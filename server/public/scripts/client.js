@@ -68,28 +68,55 @@ function renderTodos(todos) {
         let todo = todos[i];
         console.log('todo is ', todo)
         console.log("is it urgent? ", todo.isUrgent)
-        if (todo.isUrgent === true) {
+        if (todo.isUrgent === true && todo.isComplete === false) {
 
             todoisUrgent.innerHTML += `
-    <tr>
+    <tr data-testid="toDoItem">
       <td class="is_urgent">${todo.text}</td>  
-      <td class="is_urgent">${todo.isComplete}${todo.isUrgent}</td>
-      <td class="is_urgent"><button onClick="deleteTodo(${todo.id})">Delete</button></td>
+      <td class="is_urgent"><button onClick="markComplete(${todo.id}, true)">Completed</button></td>
+      <td class="is_urgent"><button data-testid="deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></td>
       </tr>
     `
         }
-        else if (todo.isUrgent === false) {
+        else if (todo.isUrgent === false && todo.isComplete === false) {
             todoLocation.innerHTML += `
-      <tr>
+      <tr data-testid="toDoItem">
       <td>${todo.text}</td>  
-      <td>${todo.isComplete}${todo.isUrgent}</td>
+      <td><button onClick="markComplete(${todo.id}, true)">Completed</button></td>
       <td ><button onClick="deleteTodo(${todo.id})">Delete</button>
       </tr>
     `;
 
         }
+        else if (todo.isComplete === true) {
+            todoLocation.innerHTML += `
+      <tr class="completed" data-testid="toDoItem">
+      <td >${todo.text}</td>  
+      <td><button onClick="markComplete(${todo.id}, false)">Completed</button></td>
+      <td ><button onClick="deleteTodo(${todo.id})">Delete</button>
+      </tr>
+    `;
+
+        }
+
     }
 }
+
+function markComplete(todoId, isComplete){
+    console.log("Changing status of...", todoId, isComplete);
+    axios({
+     method: "PUT",
+     url: "/todos/complete/" + todoId,
+     data: {isComplete: isComplete}
+    })
+    .then((response) => {
+     getTodos()
+    })
+    .catch((error) => {
+     console.log('Error', error);
+     alert('Something went wrong');
+    });
+    }
 
 
 function deleteTodo(todoId) {

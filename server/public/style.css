@@ -117,12 +117,12 @@ body {
     background-image: linear-gradient(to top,rgb(116, 116, 255), lightblue);
     color: #fcfcfc;
   }
-  tbody tr:nth-child(odd){ 
+  tbody:nth-child(odd){ 
 background-color: #fffeb9;
    font-family: sans-serif; 
    color: black;
   }
-  tbody tr:nth-child(even){
+  tbody:nth-child(even){
 background-color: #bfe7ff;
     font-family: sans-serif;
     color: black;
@@ -163,4 +163,7 @@ select{
     border-color: red;
     border-style: double;
     background-color: rgb(241, 152, 152);
+}
+.completed {
+    background-color: green;
 }

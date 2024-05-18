@@ -13,9 +13,9 @@
     <h1>SQL TO-DO List</h1>
   </header>
 <form>
-  <input id="todo_text" type="text" placeholder="todo item">
+  <input data-testid="toDoTextInput" id="todo_text" type="text" placeholder="todo item">
   Urgent<input type="checkbox" id="isUrgent" name="isUrgent">
-  <button onClick="submitTodo(event)">Submit</button>
+  <button data-testid="submitButton" onClick="submitTodo(event)">Submit</button>
 </form>
 <table>
   <thead>

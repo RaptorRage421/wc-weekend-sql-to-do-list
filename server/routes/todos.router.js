@@ -50,13 +50,13 @@ todoRouter.put('/complete/:id', (req, res)=>{
 
     if (isComplete === true){
         queryText = `
-        UPDATE "todo" SET "isComplete"=true
+        UPDATE "todos" SET "isComplete"=true
         WHERE "id"=$1;
         `;
     } 
     else if(isComplete === false){
         queryText = `
-        UPDATE "todo" SET "isComplete"=false
+        UPDATE "todos" SET "isComplete"=false
         WHERE "id"=$1;
         `;
     }    
