@@ -38,6 +38,8 @@ function submitTodo(event) {
     toDoHolding.isUrgent = urgentInput
     console.log("todo object,", toDoHolding)
     addTodos(toDoHolding)
+    document.getElementById('todo_text').value = ""
+    document.getElementById('isUrgent').checked = false
 }
 
 
@@ -72,7 +74,7 @@ function renderTodos(todos) {
 
             todoisUrgent.innerHTML += `
     <tr data-testid="toDoItem">
-      <td class="is_urgent">${todo.text}</td>  
+      <td class="is_urgent">❗️❗️${todo.text}❗️❗️</td>  
       <td class="is_urgent"><button onClick="markComplete(${todo.id}, true)">Completed</button></td>
       <td class="is_urgent"><button data-testid="deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></td>
       </tr>
@@ -93,7 +95,7 @@ function renderTodos(todos) {
       <tr class="completed" data-testid="toDoItem">
       <td>${todo.text}</td>  
       <td><button disabled onClick="markComplete(${todo.id}, false)">Completed</button></td>
-      <td ><button onClick="deleteTodo(${todo.id})">Delete</button>
+      <td><button onClick="deleteTodo(${todo.id})">Delete</button>
       </tr>
     `;
 

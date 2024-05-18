@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 
 
 todoRouter.get('/', (req, res)=>{
-    let queryText = `SELECT * FROM "todos" ORDER BY "id";`
+    let queryText = `SELECT * FROM "todos" ORDER BY "isComplete";`
 
     pool.query(queryText)
         .then((result)=>{

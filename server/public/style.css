@@ -105,7 +105,7 @@ body {
   table, th, td {
    
     
-    border: 1px solid black;
+    border: 2px solid black;
     border-collapse: collapse;
     height: 2em;
   }
@@ -159,6 +159,10 @@ select{
 }
 
 .is_urgent {
+    border: 2px solid black;
+    margin: 5px;
+    padding: 10px;
+
     color: red;
     border-color: red;
     border-style: double;
@@ -169,4 +173,16 @@ select{
 }
 button:disabled {
     background-color: #918585;
+}
+#urgentTodo{
+    padding: 5px;
+}
+.padding {
+    padding: 10px;
+    margin: 10px;
+}
+
+.separator{
+    column-span: all;
+    height: 40px;
 }
