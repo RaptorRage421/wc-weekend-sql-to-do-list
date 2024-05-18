@@ -84,7 +84,7 @@ todoRouter.delete('/:id', (req,res)=>{
 
     let todoId = req.params.id
     let queryText = `
-    DELETE FROM "todo" WHERE "id"=$1;
+    DELETE FROM "todos" WHERE "id"=$1;
     `
     pool.query(queryText, [todoId])
         .then(()=>{

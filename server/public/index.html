@@ -14,7 +14,7 @@
   </header>
 <form>
   <input id="todo_text" type="text" placeholder="todo item">
-  <input type="checkbox" id="isUrgent" name="isUrgent">
+  Urgent<input type="checkbox" id="isUrgent" name="isUrgent">
   <button onClick="submitTodo(event)">Submit</button>
 </form>
 <table>
@@ -22,10 +22,12 @@
     <tr>
     <th>Todo</th>
     <th>Status</th>
+    
   </tr>
 </thead>
-<tbody id="isUrgent">
-
+<tbody id="urgentTodo">
+<div><br>
+<br></div>
 </tbody>
  <tbody id="todoListLocation">
 
