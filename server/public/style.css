@@ -167,3 +167,6 @@ select{
 .completed {
     background-color: green;
 }
+button:disabled {
+    background-color: #918585;
+}

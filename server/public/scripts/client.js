@@ -91,8 +91,8 @@ function renderTodos(todos) {
         else if (todo.isComplete === true) {
             todoLocation.innerHTML += `
       <tr class="completed" data-testid="toDoItem">
-      <td >${todo.text}</td>  
-      <td><button onClick="markComplete(${todo.id}, false)">Completed</button></td>
+      <td>${todo.text}</td>  
+      <td><button disabled onClick="markComplete(${todo.id}, false)">Completed</button></td>
       <td ><button onClick="deleteTodo(${todo.id})">Delete</button>
       </tr>
     `;
