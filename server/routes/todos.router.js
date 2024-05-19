@@ -1,7 +1,7 @@
 const todoRouter = require('express').Router();
 const pool = require('../modules/pool');
 const deleteConfirmation = require('../public/sweetalert.js')
-const Swal = require('sweetalert2')
+
 
 todoRouter.get('/', (req, res)=>{
     let queryText = `SELECT * FROM "todos" ORDER BY "isComplete";`
@@ -82,13 +82,14 @@ todoRouter.put('/complete/:id', (req, res)=>{
 
 todoRouter.delete('/:id', (req,res)=>{
     console.log("req params", req.params)
-
+// deleteConfirmation("Are you Sure", "Deleting this ToDo", "warning", "button")
     let todoId = req.params.id
     let queryText = `
     DELETE FROM "todos" WHERE "id"=$1;
     `
     pool.query(queryText, [todoId])
         .then(()=>{
+            
             res.sendStatus(200)
         })
         .catch((err)=>{

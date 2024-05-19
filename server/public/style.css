@@ -140,5 +140,6 @@ button:disabled {
     background-color: #fa7676;
 }.row {
     column-span: all;
+    height: fit-content;
     margin: 5px;
 }

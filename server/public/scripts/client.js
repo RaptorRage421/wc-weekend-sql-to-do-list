@@ -1,7 +1,10 @@
-console.log('JS is sourced!');
 
+function onLoad(){
+    console.log('JS is sourced!');
 
+}
 
+onLoad()
 function getTodos() {
     console.log('in gettodos');
     // axios call to server to get todos
