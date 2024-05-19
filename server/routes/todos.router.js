@@ -1,6 +1,7 @@
 const todoRouter = require('express').Router();
 const pool = require('../modules/pool');
-
+const deleteConfirmation = require('../public/sweetalert.js')
+const Swal = require('sweetalert2')
 
 todoRouter.get('/', (req, res)=>{
     let queryText = `SELECT * FROM "todos" ORDER BY "isComplete";`
