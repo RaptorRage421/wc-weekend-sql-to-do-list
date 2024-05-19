@@ -2,15 +2,17 @@ button {
     border-color: rgb(160, 196, 212);
     font-size: 20px;
     padding: .5em;
-  
+
     padding-top: .1em;
     padding-bottom: 4px;
 }
+
 button:hover {
     box-shadow: -2px 2px goldenrod;
     background-color: rgb(254, 255, 185);
     border-color: red;
 }
+
 /* GLOBAL TYPOGRAPHY */
 body {
     background-color: #dcdcdc;
@@ -19,170 +21,121 @@ body {
     font-size: 1.25em;
     min-height: 100vh;
     margin: auto;
-  }
-  
-    
-  /* FLEXBOX LAYOUT */
-  html, body {
+}
+
+
+/* FLEXBOX LAYOUT */
+html,
+body {
     min-height: 90vh;
     margin: auto;
-  }
-  body {
+}
+
+body {
     display: flex;
     flex-direction: column;
-  header {
-   background-image: linear-gradient(to right, rgb(6, 156, 243), lightblue);
-    height: 2em;
-   justify-content: space-between;
-    
-    
-    font-size: 25px;
-  
-    font-weight: 100;
-    color: rgb(153, 6, 250)  ;
-  }
-  main {
-    display: flexbox;
-    flex:auto;
-    max-width: 80%;
-    margin: auto;
-  }
-  footer {
-    height: 8em;
-    background-color: #7a7a7a;
-    text-align: center;
-  }
-  
-  
-  /* HEADER/FOOTER */
-  header, footer {
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: fantasy;
-  }
-    
-    
-    
-   
-  }
-  #h1 {
-    font-size: 2em;
-    -webkit-text-stroke-width: 0px ;
-    -webkit-text-stroke-color: rgb(53, 114, 245) ;
-    font-weight: 900;
-  }
-  
-  
-  /* FORM ELEMENTS */
-  input {
+}
+    header {
+        background-image: linear-gradient(to right, rgb(6, 156, 243), lightblue);
+        height: 2em;
+        justify-content: space-between;
+
+
+        font-size: 25px;
+
+        font-weight: 100;
+        color: rgb(153, 6, 250);
+    }
+
+    main {
+        display: flexbox;
+        flex: auto;
+        max-width: 80%;
+        margin: auto;
+    }
+
+    footer {
+        height: 8em;
+        background-color: #7a7a7a;
+        text-align: center;
+    }
+
+
+    /* HEADER/FOOTER */
+    header,
+    footer {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: fantasy;
+    }
+
+
+
+/* FORM ELEMENTS */
+input {
     border-top-left-radius: 0;
-    
+
     padding: .5em;
     width: 175px;
     background: #FCFCFC;
     border: 1px solid;
-    
-    
-  }
-  input:hover {
+
+}
+
+input:hover {
     background-color: rgb(254, 255, 220);
-  }
-  input:focus {
+}
+
+input:focus {
     background-color: rgb(220, 255, 220);
-  }
-
-
-  
-  
-  /* TABLE */
-  table {
-   
-    width: 100%;
-    text-align: left;
-  }
-  table, th, td {
-   
-    
-    border: 2px solid black;
-    border-collapse: collapse;
-    height: 2em;
-  }
-  th, td {
-    padding: .4em;
-    min-width: 3em;
-  }
-  thead {
-    background-image: linear-gradient(to top,rgb(116, 116, 255), lightblue);
-    color: #fcfcfc;
-  }
-  tbody:nth-child(odd){ 
-background-color: #fffeb9;
-   font-family: sans-serif; 
-   color: black;
-  }
-  tbody:nth-child(even){
-background-color: #bfe7ff;
-    font-family: sans-serif;
-    color: black;
-  }
-
-
-
-h4 {
-    text-align: right;
-    -webkit-text-stroke-width: 0 ;
-    -webkit-text-stroke-color: rgb(12, 27, 36) ;
-}
-
-#headerText{
-    text-align: right;
-    width: max-content;
 }
 
 
 
-#isUrgent{
-  border-radius: 1em;
-    border-top-right-radius: .4em;
-    border-bottom-left-radius: .4em;
-    
-}
-#filler{
-    width: 200px;
-}
 
 
-select{
-  border-radius: .5em;
-}
-
-.is_urgent {
-    border: 2px solid black;
-    margin: 5px;
-    padding: 10px;
-
-    color: red;
-    border-color: red;
-    border-style: double;
-    background-color: rgb(241, 152, 152);
-}
 .completed {
-    background-color: green;
+    background-color: rgb(181, 245, 181);
+    text-decoration: line-through;
+    margin-right: 2px;
+    margin-bottom: 1px;
+   
 }
+
 button:disabled {
     background-color: #918585;
 }
-#urgentTodo{
-    padding: 5px;
-}
-.padding {
-    padding: 10px;
-    margin: 10px;
-}
 
-.separator{
+
+
+.separator {
     column-span: all;
     height: 40px;
+}
+.row-striped:nth-of-type(odd){
+    background-color: #caadff;
+  }
+  
+  .row-striped:nth-of-type(even){
+    background-color: #fdff9f;
+  }
+
+
+.is_urgent {
+    margin-right: 2px;
+    margin-bottom: 1px;
+    padding: 5px;
+    font-size: 30px;
+    font-variant: small-caps;
+    font-weight: 900;
+   border-collapse: separate;
+   
+}
+.is_urgent:nth-of-type(odd){
+    background-color: #f19898;
+}
+.is_urgent:nth-of-type(even){
+    background-color: #fa7676;
 }

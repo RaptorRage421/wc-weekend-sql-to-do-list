@@ -62,6 +62,7 @@ function addTodos(todoToAdd) {
 function renderTodos(todos) {
     const todoLocation = document.getElementById('todoListLocation')
     const todoisUrgent = document.getElementById('urgentTodo')
+    const completedLocation = document.getElementById('completed_todos')
     console.log('is urgent location', todoisUrgent.innerHTML)
     todoisUrgent.innerHTML = ''
     todoLocation.innerHTML = '';
@@ -73,30 +74,30 @@ function renderTodos(todos) {
         if (todo.isUrgent === true && todo.isComplete === false) {
 
             todoisUrgent.innerHTML += `
-    <tr data-testid="toDoItem">
-      <td class="is_urgent">❗️❗️${todo.text}❗️❗️</td>  
-      <td class="is_urgent"><button onClick="markComplete(${todo.id}, true)">Completed</button></td>
-      <td class="is_urgent"><button data-testid="deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></td>
-      </tr>
+            <div class="row row-striped is_urgent">
+    <div class="col-xs-1 col-md-8">❗️❗️${todo.text} </div> 
+    <div class="col-xs-1 col-md-2"><button class="btn btn-dm btn-primary" onClick="markComplete(${todo.id}, true)">Completed</button></div>
+    <div class="col-xs-1 col-md-1"><button class="btn btn-sm btn-danger" data-testid="deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></</div>
+      </div>
     `
         }
         else if (todo.isUrgent === false && todo.isComplete === false) {
             todoLocation.innerHTML += `
-      <tr data-testid="toDoItem">
-      <td>${todo.text}</td>  
-      <td><button onClick="markComplete(${todo.id}, true)">Completed</button></td>
-      <td ><button onClick="deleteTodo(${todo.id})">Delete</button>
-      </tr>
+            <div class="row row-striped">
+      <div class="col-xs-6 col-md-8">${todo.text} </div> 
+      <div class="col-xs-6 col-md-2"><button class="btn btn-sm btn-primary" onClick="markComplete(${todo.id}, true)">Completed</button></div> 
+      <div class="col-xs-6 col-md-1"><button class="btn btn-sm btn-danger" onClick="deleteTodo(${todo.id})">Delete</button></div> 
+      </div>
     `;
 
         }
-        else if (todo.isComplete === true) {
+     if (todo.isComplete === true) {
             todoLocation.innerHTML += `
-      <tr class="completed" data-testid="toDoItem">
-      <td>${todo.text}</td>  
-      <td><button disabled onClick="markComplete(${todo.id}, false)">Completed</button></td>
-      <td><button onClick="deleteTodo(${todo.id})">Delete</button>
-      </tr>
+            <div class="row row-striped">
+      <div class="col-xs-6 col-md-8 completed">${todo.text}</div>  
+      <div class="col-xs-6 col-md-2 completed"><button disabled class="btn btn-sm btn-primary" onClick="markComplete(${todo.id}, false)">Completed</button></div> 
+      <div class="col-xs-6 col-md-1 completed"><button class="btn btn-sm btn-danger" onClick="deleteTodo(${todo.id})">Delete</button></div> 
+      </div>
     `;
 
         }
