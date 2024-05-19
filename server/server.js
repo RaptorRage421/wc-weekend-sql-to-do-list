@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 
+
 const todos = require('./routes/todos.router.js');
 
 let PORT = process.env.PORT || 5001;
@@ -9,7 +10,9 @@ let PORT = process.env.PORT || 5001;
 if (process.env.NODE_ENV == 'test') {
   PORT = 5002;
 }
-
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/public/index2.html')
+// })
 app.use(express.static('./server/public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))

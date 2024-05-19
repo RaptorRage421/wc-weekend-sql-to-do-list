@@ -1,5 +1,10 @@
-console.log('JS is sourced!');
 
+function onLoad(){
+    console.log('JS is sourced!');
+
+}
+
+onLoad()
 function getTodos() {
     console.log('in gettodos');
     // axios call to server to get todos
@@ -75,28 +80,28 @@ function renderTodos(todos) {
 
             todoisUrgent.innerHTML += `
             <div class="row row-striped is_urgent">
-    <div class="col-xs-1 col-md-8">❗️❗️${todo.text} </div> 
-    <div class="col-xs-1 col-md-2"><button class="btn btn-dm btn-primary" onClick="markComplete(${todo.id}, true)">Completed</button></div>
-    <div class="col-xs-1 col-md-1"><button class="btn btn-sm btn-danger" data-testid="deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></</div>
+    <div class="col-xs-3 col-md-6">${todo.text} ❗️</div> 
+    <div class="col-md-auto"><button class="btn btn-dm btn-primary" onClick="markComplete(${todo.id}, true)">Completed</button>
+    <button class="btn btn-sm btn-danger deleteButton" data-testid="deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></</div>
       </div>
     `
         }
         else if (todo.isUrgent === false && todo.isComplete === false) {
             todoLocation.innerHTML += `
             <div class="row row-striped">
-      <div class="col-xs-6 col-md-8">${todo.text} </div> 
-      <div class="col-xs-6 col-md-2"><button class="btn btn-sm btn-primary" onClick="markComplete(${todo.id}, true)">Completed</button></div> 
-      <div class="col-xs-6 col-md-1"><button class="btn btn-sm btn-danger" onClick="deleteTodo(${todo.id})">Delete</button></div> 
+      <div class="col-xs-1 col-md-6">${todo.text} </div> 
+      <div class="col-md-auto"><button class="btn btn-sm btn-primary" onClick="markComplete(${todo.id}, true)">Completed</button> 
+      <button class="btn btn-sm btn-danger deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></div> 
       </div>
     `;
 
         }
      if (todo.isComplete === true) {
             todoLocation.innerHTML += `
-            <div class="row row-striped">
-      <div class="col-xs-6 col-md-8 completed">${todo.text}</div>  
-      <div class="col-xs-6 col-md-2 completed"><button disabled class="btn btn-sm btn-primary" onClick="markComplete(${todo.id}, false)">Completed</button></div> 
-      <div class="col-xs-6 col-md-1 completed"><button class="btn btn-sm btn-danger" onClick="deleteTodo(${todo.id})">Delete</button></div> 
+            <div class="row row-striped completed">
+      <div class="col-xs-1 col-md-6 completed">${todo.text}</div>  
+      <div class="col-md-auto completed"><button disabled class="btn btn-sm btn-primary" onClick="markComplete(${todo.id}, false)">Completed</button> 
+      <button class="btn btn-sm btn-danger deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></div> 
       </div>
     `;
 
