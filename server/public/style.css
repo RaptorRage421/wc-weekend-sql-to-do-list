@@ -186,3 +186,10 @@ button:disabled {
 }
 
 
+.wordWrap{
+    word-wrap: break-word;
+}
+table.tableSection {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
