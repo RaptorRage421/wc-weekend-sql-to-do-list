@@ -24,7 +24,8 @@ body {
     min-height: 100vh;
     margin: auto;
 }
-h1{
+
+h1 {
     text-align: center;
 }
 
@@ -90,7 +91,7 @@ input:focus {
 
 
 
-tr{
+tr {
     background-color: #4F2683;
     color: #FFC62F;
 }
@@ -120,7 +121,7 @@ button:disabled {
     font-size: 20px;
     font-variant: small-caps;
     font-weight: 500;
-    
+
 
 }
 
@@ -172,23 +173,20 @@ button:disabled {
 
 .submit_button {
     border-color: rgb(143, 255, 171);
-    
+
     padding: .5em;
     border-radius: .5em;
     padding-top: .1em;
     padding-bottom: 4px;
 }
+
 .titleform {
     color: #FFC62F;
-    
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 50px;
 }
 
-
-.wordWrap{
-    word-wrap: break-word;
-}
 table.tableSection {
     table-layout: fixed;
     word-wrap: break-word;
