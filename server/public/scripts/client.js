@@ -79,8 +79,8 @@ function renderTodos(todos) {
 
             todoisUrgent.innerHTML += `
             <tr class="is_urgent">
-                <td style="word-wrap: break-word;" scope="col">${todo.text} ❗️</td> 
-                <td scope="col"><button class="btn btn-dm btn-primary" onClick="markComplete(event,${todo.id}, true)">Completed</button></td>
+                <td class="wordWrap" scope="col">${todo.text} ❗️</td> 
+                <td scope="col"><button class="btn btn-sm btn-primary" onClick="markComplete(event,${todo.id}, true)">Completed</button></td>
                 <td scope="col"><button class="btn btn-sm btn-danger deleteButton" data-testid="deleteButton" onClick="deleteTodo(event,${todo.id})">Delete</button></td>
             </tr>
     `
@@ -88,7 +88,7 @@ function renderTodos(todos) {
         else if (todo.isUrgent === false && todo.isComplete === false) {
             todoLocation.innerHTML += `
             <tr class="row-striped">
-                <td style="word-wrap: break-word;" scope="col">${todo.text} </td> 
+                <td class="wordWrap" scope="col">${todo.text} </td> 
                 <td scope="col"><button class="btn btn-sm btn-primary" onClick="markComplete(event, ${todo.id}, true)">Completed</button></td>
                 <td scope="col"><button class="btn btn-sm btn-danger deleteButton" onClick="deleteTodo(event,${todo.id})">Delete</button></td> 
             </tr>
@@ -98,7 +98,7 @@ function renderTodos(todos) {
      if (todo.isComplete === true) {
             todoLocation.innerHTML += `
             <tr class="completed">
-                <td class="completed" style="word-wrap: break-word;" scope="col">${todo.text}</td>  
+                <td class="wordWrap completed" scope="col">${todo.text}</td>  
                 <td class="completed" scope="col"><button disabled class="btn btn-sm btn-primary" onClick="markComplete(event,${todo.id}, false)">Completed</button></td>
                 <td class="completed" scope="col"><button class="btn btn-sm btn-danger deleteButton" onClick="deleteTodo(event,${todo.id})">Delete</button></td> 
             </tr>
@@ -111,7 +111,7 @@ function renderTodos(todos) {
 
 function markComplete(event,todoId, isComplete){
     event.preventDefault()
-    console.log("Todo: ", todoId, "is now Complete!");
+    console.log("Great Job! You completed todo: ", todoId);
     axios({
      method: "PUT",
      url: "/todos/complete/" + todoId,
