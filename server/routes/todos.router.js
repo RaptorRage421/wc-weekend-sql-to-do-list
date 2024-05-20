@@ -1,6 +1,5 @@
 const todoRouter = require('express').Router();
 const pool = require('../modules/pool');
-const deleteConfirmation = require('../public/sweetalert.js')
 
 
 todoRouter.get('/', (req, res)=>{
@@ -31,7 +30,7 @@ todoRouter.post('/', (req, res)=>{
     `
     pool.query(queryText, todoArray)
         .then((result)=>{
-            console.log(todoArray)
+            // console.log(todoArray)
             res.sendStatus(201)
         })
         .catch((err)=>{

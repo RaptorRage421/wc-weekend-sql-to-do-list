@@ -6,7 +6,7 @@ function onLoad(){
 
 onLoad()
 function getTodos() {
-    console.log('in gettodos');
+    // console.log('in gettodos');
     // axios call to server to get todos
     axios({
         method: 'GET',
@@ -15,7 +15,7 @@ function getTodos() {
         .then((response) => {
             // console.log('get todos is running...', response.data)
             renderTodos(response.data)
-            console.log("GET /todos working", response.data)
+            // console.log("GET /todos working", response.data)
         })
         .catch((err) => {
             console.error('Error in /GET todos', err)
@@ -30,21 +30,21 @@ getTodos();
 function submitTodo(event) {
     event.preventDefault();
     let inputField = document.getElementById('todo_text').value
-    let urgentInput = document.getElementById('isUrgent').checked
+    let urgentInput = document.getElementById('isUrgent').value
     if (inputField.length === 0) {
         return
     }
-    console.log('Submit button clicked.');
+    // console.log('Submit button clicked.');
     let toDoHolding = {}
-    console.log("todo object,", toDoHolding)
+    // console.log("todo object,", toDoHolding)
 
     toDoHolding.text = inputField;
     toDoHolding.isComplete = false
     toDoHolding.isUrgent = urgentInput
-    console.log("todo object,", toDoHolding)
+    // console.log("todo object,", toDoHolding)
     addTodos(toDoHolding)
     document.getElementById('todo_text').value = ""
-    document.getElementById('isUrgent').checked = false
+    document.getElementById('isUrgent').selectedIndex = 0
 }
 
 
@@ -55,7 +55,8 @@ function addTodos(todoToAdd) {
         data: todoToAdd
     })
         .then((response) => {
-            console.log('addtodo() is working...', response.data)
+            console.log("Adding todo: ", todoToAdd.text)
+            console.log("is it Urgent: ", todoToAdd.isUrgent)
             getTodos()
         })
         .catch((err) => {
@@ -68,41 +69,39 @@ function renderTodos(todos) {
     const todoLocation = document.getElementById('todoListLocation')
     const todoisUrgent = document.getElementById('urgentTodo')
     const completedLocation = document.getElementById('completed_todos')
-    console.log('is urgent location', todoisUrgent.innerHTML)
+    // console.log('is urgent location', todoisUrgent.innerHTML)
     todoisUrgent.innerHTML = ''
     todoLocation.innerHTML = '';
 
     for (let i = 0; i < todos.length; i += 1) {
-        let todo = todos[i];
-        console.log('todo is ', todo)
-        console.log("is it urgent? ", todo.isUrgent)
+        let todo = todos[i]; 
         if (todo.isUrgent === true && todo.isComplete === false) {
 
             todoisUrgent.innerHTML += `
-            <div class="row row-striped is_urgent">
-    <div class="col-xs-3 col-md-6">${todo.text} ❗️</div> 
-    <div class="col-md-auto"><button class="btn btn-dm btn-primary" onClick="markComplete(${todo.id}, true)">Completed</button>
-    <button class="btn btn-sm btn-danger deleteButton" data-testid="deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></</div>
-      </div>
+            <tr class="is_urgent">
+                <td style="word-wrap: break-word;" scope="col">${todo.text} ❗️</td> 
+                <td scope="col"><button class="btn btn-dm btn-primary" onClick="markComplete(event,${todo.id}, true)">Completed</button></td>
+                <td scope="col"><button class="btn btn-sm btn-danger deleteButton" data-testid="deleteButton" onClick="deleteTodo(event,${todo.id})">Delete</button></td>
+            </tr>
     `
         }
         else if (todo.isUrgent === false && todo.isComplete === false) {
             todoLocation.innerHTML += `
-            <div class="row row-striped">
-      <div class="col-xs-1 col-md-6">${todo.text} </div> 
-      <div class="col-md-auto"><button class="btn btn-sm btn-primary" onClick="markComplete(${todo.id}, true)">Completed</button> 
-      <button class="btn btn-sm btn-danger deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></div> 
-      </div>
+            <tr class="row-striped">
+                <td style="word-wrap: break-word;" scope="col">${todo.text} </td> 
+                <td scope="col"><button class="btn btn-sm btn-primary" onClick="markComplete(event, ${todo.id}, true)">Completed</button></td>
+                <td scope="col"><button class="btn btn-sm btn-danger deleteButton" onClick="deleteTodo(event,${todo.id})">Delete</button></td> 
+            </tr>
     `;
 
         }
      if (todo.isComplete === true) {
             todoLocation.innerHTML += `
-            <div class="row row-striped completed">
-      <div class="col-xs-1 col-md-6 completed">${todo.text}</div>  
-      <div class="col-md-auto completed"><button disabled class="btn btn-sm btn-primary" onClick="markComplete(${todo.id}, false)">Completed</button> 
-      <button class="btn btn-sm btn-danger deleteButton" onClick="deleteTodo(${todo.id})">Delete</button></div> 
-      </div>
+            <tr class="completed">
+                <td class="completed" style="word-wrap: break-word;" scope="col">${todo.text}</td>  
+                <td class="completed" scope="col"><button disabled class="btn btn-sm btn-primary" onClick="markComplete(event,${todo.id}, false)">Completed</button></td>
+                <td class="completed" scope="col"><button class="btn btn-sm btn-danger deleteButton" onClick="deleteTodo(event,${todo.id})">Delete</button></td> 
+            </tr>
     `;
 
         }
@@ -110,8 +109,9 @@ function renderTodos(todos) {
     }
 }
 
-function markComplete(todoId, isComplete){
-    console.log("Changing status of...", todoId, isComplete);
+function markComplete(event,todoId, isComplete){
+    event.preventDefault()
+    console.log("Todo: ", todoId, "is now Complete!");
     axios({
      method: "PUT",
      url: "/todos/complete/" + todoId,
@@ -127,14 +127,14 @@ function markComplete(todoId, isComplete){
     }
 
 
-function deleteTodo(todoId) {
-
+function deleteTodo(event, todoId) {
+event.preventDefault()
     axios({
       method: "DELETE",
       url: `/todos/${todoId}`
     })
       .then((response) => {
-        console.log('Deleting todo: ',todoId)
+        console.log('Deleting todo: ', todoId)
         getTodos();
       })
       .catch((error) => {
