@@ -67,7 +67,7 @@ todoRouter.put('/complete/:id', (req, res) => {
 
     pool.query(queryText, [todoId])
         .then(() => {
-            res.sendStatus(204)
+            res.sendStatus(200)
         })
         .catch((err) => {
             console.log(`Error making query ${queryText}`, err)
