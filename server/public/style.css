@@ -9,9 +9,10 @@ button {
 
 button:hover {
     border-radius: .5em;
-    box-shadow: -5px 0px green;
-    background-color: rgb(147, 238, 119);
+    box-shadow: 4px 1px rgb(132, 251, 132);
+    background-color: rgb(195, 252, 178);
     border-color: green;
+    
 }
 
 /* GLOBAL TYPOGRAPHY */
