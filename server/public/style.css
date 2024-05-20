@@ -1,29 +1,32 @@
 button {
-    border-color: rgb(160, 196, 212);
+    border-color: rgb(184, 255, 156);
     font-size: 20px;
     padding: .5em;
-
+    border-radius: 1em;
     padding-top: .1em;
     padding-bottom: 4px;
 }
 
 button:hover {
-    box-shadow: -2px 2px goldenrod;
-    background-color: rgb(254, 255, 185);
-    border-color: red;
+    border-radius: .5em;
+    box-shadow: -5px 0px green;
+    background-color: rgb(147, 238, 119);
+    border-color: green;
 }
 
 /* GLOBAL TYPOGRAPHY */
 body {
     display: flex;
-    background-color: #dcdcdc;
+    background-color: #000000;
     font-family: 'Roboto', sans-serif;
     color: #313131;
     font-size: 1.25em;
     min-height: 100vh;
     margin: auto;
 }
-
+h1{
+    text-align: center;
+}
 
 /* FLEXBOX LAYOUT */
 html,
@@ -36,47 +39,40 @@ body {
     display: flex;
     flex-direction: column;
 }
-    header {
-        background-image: linear-gradient(to right, rgb(6, 156, 243), lightblue);
-        height: 2em;
-        justify-content: space-between;
+
+header {
+    background-image: linear-gradient(to top, #FFC62F, #4F2683);
+
+}
+
+main {
+    display: flexbox;
+    flex: auto;
+    max-width: 80%;
+    margin: auto;
+}
+
+footer {
+    height: 8em;
+    background-color: #7a7a7a;
+    text-align: center;
+}
 
 
-        font-size: 25px;
+/* HEADER/FOOTER */
+header,
+footer {
+    height: 100%;
+    display: flex;
+    text-align: center;
 
-        font-weight: 100;
-        color: rgb(153, 6, 250);
-    }
-
-    main {
-        display: flexbox;
-        flex: auto;
-        max-width: 80%;
-        margin: auto;
-    }
-
-    footer {
-        height: 8em;
-        background-color: #7a7a7a;
-        text-align: center;
-    }
-
-
-    /* HEADER/FOOTER */
-    header,
-    footer {
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: fantasy;
-    }
+}
 
 
 
 /* FORM ELEMENTS */
 input {
-   width: 100%;
+    width: 100%;
     padding: .5em;
 
     background: #FCFCFC;
@@ -94,33 +90,27 @@ input:focus {
 
 
 
-
-
-.completed {
-    background-color: rgb(181, 245, 181);
-    text-decoration: line-through;
-    margin-right: 2px;
-    margin-bottom: 1px;
-   
+tr{
+    background-color: #4F2683;
+    color: #FFC62F;
 }
+
+
 
 button:disabled {
     background-color: #918585;
 }
 
 
-
-.separator {
-    column-span: all;
-    height: 30px;
-}
-.row-striped:nth-of-type(odd){
+.row-striped:nth-of-type(odd) {
     background-color: #caadff;
-  }
-  
-  .row-striped:nth-of-type(even){
+    color: #000000;
+}
+
+.row-striped:nth-of-type(even) {
     background-color: #fdff9f;
-  }
+    color: #000000;
+}
 
 
 .is_urgent {
@@ -129,17 +119,70 @@ button:disabled {
     padding: 5px;
     font-size: 20px;
     font-variant: small-caps;
-    font-weight: 900;
-   border-collapse: separate;
-   
+    font-weight: 500;
+    
+
 }
-.is_urgent:nth-of-type(odd){
+
+.is_urgent:nth-of-type(odd) {
     background-color: #f19898;
+    color: #000000;
 }
-.is_urgent:nth-of-type(even){
+
+.is_urgent:nth-of-type(even) {
     background-color: #fa7676;
-}.row {
-    column-span: all;
-    height: fit-content;
-    margin: 5px;
+    color: #000000;
 }
+
+.card-body {
+    background-color: #caadff;
+}
+
+.vh-100 {
+    background-color: #4F2683;
+}
+
+
+
+.formSpacing2 {
+    text-align: right;
+}
+
+.formSpacing {
+    text-align: left;
+}
+
+.completed:nth-of-type(odd) {
+    background-color: rgb(181, 245, 181);
+    text-decoration: line-through;
+    color: green;
+    font-variant: small-caps;
+
+
+}
+
+.completed:nth-of-type(even) {
+    background-color: rgb(181, 245, 181);
+    text-decoration: line-through;
+    color: green;
+    font-variant: small-caps;
+
+
+}
+
+.submit_button {
+    border-color: rgb(143, 255, 171);
+    
+    padding: .5em;
+    border-radius: .5em;
+    padding-top: .1em;
+    padding-bottom: 4px;
+}
+.titleform {
+    color: #FFC62F;
+    
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+}
+
+
