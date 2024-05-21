@@ -42,20 +42,19 @@ todoRouter.post('/', (req, res) => {
 // PUT
 todoRouter.put('/complete/:id', (req, res) => {
     let todoId = req.params.id
-    let isComplete = req.body.isComplete
-    let completedAt = req.body.completedAt
+    let todo = req.body
     // console.log("req.body", req.body)
     // console.log("is ready?" , isComplete)
     // console.log("todo id", todoId)
     let queryText = ''
 
-    if (isComplete === true) {
+    if (todo.isComplete === true) {
         queryText = `
         UPDATE "todos" SET "isComplete"=true, "completedAt"=$2
         WHERE "id"=$1;
         `;
     }
-    else if (isComplete === false) {
+    else if (todo.isComplete === false) {
         queryText = `
         UPDATE "todos" SET "isComplete"=false
         WHERE "id"=$1;
@@ -66,8 +65,9 @@ todoRouter.put('/complete/:id', (req, res) => {
         console.error('Trouble marking as complete')
     }
 
-    pool.query(queryText, [todoId,req.body.completedAt])
+    pool.query(queryText, [todoId,todo.completedAt])
         .then(() => {
+            console.log("To Do #",todoId,"Completed at", todo.completedAt)
             res.sendStatus(200)
         })
         .catch((err) => {

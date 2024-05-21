@@ -96,7 +96,7 @@ function renderTodos(todos) {
 
         }
         if (todo.isComplete === true) {
-            const options = { year: 'numeric', month: 'long', day: 'numeric'};
+            const options = { year: 'numeric', month: 'numeric', day: 'numeric'};
     let completedDate = new Date(todo.completedAt)
 const formattedDate = new Intl.DateTimeFormat('en-US', options).format(completedDate);
             // let completedDate = new Date(todo.completedAt)
@@ -119,11 +119,11 @@ function markComplete(event, todoId, isComplete, completedAt) {
     event.preventDefault()
    
     let date = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric',hour: "numeric",
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric',hour: "numeric",
     minute: "numeric",
-    second: "numeric" };
+    second: "numeric"};
 const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
-    console.log("Great Job! You completed todo: ", todoId, "on: ", formattedDate);
+    console.log("Great Job! You completed todo:", todoId, "on:", formattedDate);
 
     axios({
         method: "PUT",
@@ -146,7 +146,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
 function deleteTodo(event, todoId) {
     event.preventDefault()
     let date = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric',hour: "numeric",
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric',hour: "numeric",
     minute: "numeric",
     second: "numeric" };
 const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
