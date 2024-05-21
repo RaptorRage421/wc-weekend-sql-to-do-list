@@ -96,10 +96,19 @@ function renderTodos(todos) {
 
         }
         if (todo.isComplete === true) {
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+                
+            };
+            let completedDate = new Date(todo.completedAt)
+            let formattedDate = completedDate.toLocaleDateString('en-US', options);
+
             todoLocation.innerHTML += `
-            <tr data-testid="toDoItem" class="completed">
+            <tr data-testid="toDoItem">
                 <td class="completed" scope="col">${todo.text}</td>  
-                <td class="completed" scope="col"><button disabled class="btn btn-sm btn-primary" data-testid="completeButton" onClick="markComplete(event,${todo.id}, false)">Completed</button></td>
+                <td id="no-strikethrough" scope="col">Completed on ${formattedDate}</td>
                 <td class="completed" scope="col"><button class="btn btn-sm btn-danger deleteButton" data-testid="deleteButton" onClick="deleteTodo(event,${todo.id})">Delete</button></td> 
             </tr>
     `;
@@ -109,13 +118,30 @@ function renderTodos(todos) {
     }
 }
 
-function markComplete(event, todoId, isComplete) {
+function markComplete(event, todoId, isComplete, completedAt) {
     event.preventDefault()
     console.log("Great Job! You completed todo: ", todoId);
+    let date = new Date();
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timeZoneName: 'short'
+
+    };
+
+    let formattedDate = date.toLocaleDateString('en-US', options);
+
     axios({
         method: "PUT",
         url: "/todos/complete/" + todoId,
-        data: { isComplete: isComplete }
+        data: {
+            isComplete: isComplete,
+            completedAt: formattedDate
+        }
     })
         .then((response) => {
             getTodos()
@@ -129,16 +155,39 @@ function markComplete(event, todoId, isComplete) {
 
 function deleteTodo(event, todoId) {
     event.preventDefault()
-    axios({
-        method: "DELETE",
-        url: `/todos/${todoId}`
-    })
-        .then((response) => {
-            console.log('Deleting todo: ', todoId)
-            getTodos();
-        })
-        .catch((error) => {
-            console.log('Error', error);
-            alert('Something went wrong');
-        });
+    Swal.fire({
+        title: 'Are you sure?',
+        text: `This will permanently delete todo #${todoId}`,
+        icon: 'warning',
+        buttonsStyling: 'false',
+        focusCancel: 'true',
+        showCancelButton: 'true',
+        confirmButtonColor: '#F7765A',
+        confirmButtonText: '🗑️ Delete it!',
+        cancelButtonColor: '#52C2FA',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        // If user confirms deletion
+        if (result.isConfirmed) {
+            // Make Axios DELETE request to delete todo
+            axios({
+                method: "DELETE",
+                url: `/todos/${todoId}`
+            })
+                .then(response => {
+                    // Handle successful deletion
+                    if (response.status === 200) {
+                        Swal.fire('Deleted!', `Todo #${todoId} has been deleted!`, 'success');
+                        getTodos()
+                    } else {
+                        // Handle deletion error
+                        Swal.fire('Error!', 'Failed to delete todo.', 'error');
+                    }
+                })
+                .catch(error => {
+                    // Handle Axios request error
+                    Swal.fire('Error!', 'Failed to delete todo: ' + error.message, 'error');
+                });
+        }
+    });
 }

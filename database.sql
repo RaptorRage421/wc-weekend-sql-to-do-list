@@ -4,7 +4,8 @@ CREATE TABLE "todos" (
 	"id" SERIAL PRIMARY KEY,
 	"text" TEXT,
 	"isComplete" BOOLEAN DEFAULT FALSE,
-  "isUrgent" BOOLEAN DEFAULT FALSE
+  "isUrgent" BOOLEAN DEFAULT FALSE,
+  "completedAt" DATE
 );
 
 INSERT INTO "todos"

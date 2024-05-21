@@ -43,6 +43,7 @@ todoRouter.post('/', (req, res) => {
 todoRouter.put('/complete/:id', (req, res) => {
     let todoId = req.params.id
     let isComplete = req.body.isComplete
+    let completedAt = req.body.completedAt
     // console.log("req.body", req.body)
     // console.log("is ready?" , isComplete)
     // console.log("todo id", todoId)
@@ -50,7 +51,7 @@ todoRouter.put('/complete/:id', (req, res) => {
 
     if (isComplete === true) {
         queryText = `
-        UPDATE "todos" SET "isComplete"=true
+        UPDATE "todos" SET "isComplete"=true, "completedAt"=$2
         WHERE "id"=$1;
         `;
     }
@@ -65,7 +66,7 @@ todoRouter.put('/complete/:id', (req, res) => {
         console.error('Trouble marking as ready')
     }
 
-    pool.query(queryText, [todoId])
+    pool.query(queryText, [todoId,req.body.completedAt])
         .then(() => {
             res.sendStatus(200)
         })

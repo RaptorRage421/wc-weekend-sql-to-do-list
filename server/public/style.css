@@ -192,3 +192,9 @@ table.tableSection {
     table-layout: fixed;
     word-wrap: break-word;
 }
+
+#no-strikethrough {
+    text-decoration: dotted;
+    background-color: rgb(181, 245, 181);
+    color: black;
+}
