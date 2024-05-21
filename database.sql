@@ -5,7 +5,7 @@ CREATE TABLE "todos" (
 	"text" TEXT,
 	"isComplete" BOOLEAN DEFAULT FALSE,
   "isUrgent" BOOLEAN DEFAULT FALSE,
-  "completedAt" DATE
+  "completedAt" TIMESTAMP
 );
 
 INSERT INTO "todos"
