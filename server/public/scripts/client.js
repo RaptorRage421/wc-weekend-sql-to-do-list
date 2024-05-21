@@ -123,7 +123,7 @@ function markComplete(event, todoId, isComplete, completedAt) {
     minute: "numeric",
     second: "numeric"};
 const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
-    console.log("Great Job! You completed todo:", todoId, "on:", formattedDate);
+    console.log(`Great Job! You completed To Do #${todoId} on ${formattedDate}`);
 
     axios({
         method: "PUT",
@@ -172,8 +172,8 @@ const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
                 .then(response => {
                     // Handle successful deletion
                     if (response.status === 200) {
-                        Swal.fire('Deleted!', `Todo #${todoId} has been deleted at ${formattedDate}!`, 'success');
-                        console.log(`Todo #${todoId} has been deleted at ${formattedDate}!`)
+                        // Swal.fire('Deleted!', `Todo #${todoId} has been deleted at ${formattedDate}!`, 'success');
+                        console.log(`Todo #${todoId} deleted at ${formattedDate}!`)
                         getTodos()
                     } else {
                         // Handle deletion error

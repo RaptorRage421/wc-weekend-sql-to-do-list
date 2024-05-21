@@ -46,6 +46,12 @@ todoRouter.put('/complete/:id', (req, res) => {
     // console.log("req.body", req.body)
     // console.log("is ready?" , isComplete)
     // console.log("todo id", todoId)
+    let date = new Date();
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric',hour: "numeric",
+    minute: "numeric",
+    second: "numeric" };
+const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+    
     let queryText = ''
 
     if (todo.isComplete === true) {
@@ -67,7 +73,7 @@ todoRouter.put('/complete/:id', (req, res) => {
 
     pool.query(queryText, [todoId,todo.completedAt])
         .then(() => {
-            console.log("To Do #",todoId,"Completed at", todo.completedAt)
+            console.log("To Do #",todoId,"Completed at", formattedDate)
             res.sendStatus(200)
         })
         .catch((err) => {
@@ -81,15 +87,20 @@ todoRouter.put('/complete/:id', (req, res) => {
 // DELETE
 
 todoRouter.delete('/:id', (req, res) => {
+    let date = new Date();
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric',hour: "numeric",
+    minute: "numeric",
+    second: "numeric" };
+const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
     console.log("req params", req.params)
-    // deleteConfirmation("Are you Sure", "Deleting this ToDo", "warning", "button")
+   
     let todoId = req.params.id
     let queryText = `
     DELETE FROM "todos" WHERE "id"=$1;
     `
     pool.query(queryText, [todoId])
         .then(() => {
-
+            console.log(`To Do #${todoId} deleted at ${formattedDate}`)
             res.sendStatus(200)
         })
         .catch((err) => {
