@@ -63,7 +63,7 @@ todoRouter.put('/complete/:id', (req, res) => {
     }
     else {
         res.sendStatus(500)
-        console.error('Trouble marking as ready')
+        console.error('Trouble marking as complete')
     }
 
     pool.query(queryText, [todoId,req.body.completedAt])

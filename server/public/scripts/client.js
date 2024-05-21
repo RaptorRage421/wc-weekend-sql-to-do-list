@@ -96,14 +96,11 @@ function renderTodos(todos) {
 
         }
         if (todo.isComplete === true) {
-            const options = {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-                
-            };
-            let completedDate = new Date(todo.completedAt)
-            let formattedDate = completedDate.toLocaleDateString('en-US', options);
+            const options = { year: 'numeric', month: 'long', day: 'numeric'};
+    let completedDate = new Date(todo.completedAt)
+const formattedDate = new Intl.DateTimeFormat('en-US', options).format(completedDate);
+            // let completedDate = new Date(todo.completedAt)
+            // let formattedDate = completedDate.toLocaleDateString('en-US', options);
 
             todoLocation.innerHTML += `
             <tr data-testid="toDoItem">
@@ -120,20 +117,13 @@ function renderTodos(todos) {
 
 function markComplete(event, todoId, isComplete, completedAt) {
     event.preventDefault()
-    console.log("Great Job! You completed todo: ", todoId);
+   
     let date = new Date();
-    const options = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-        timeZoneName: 'short'
-
-    };
-
-    let formattedDate = date.toLocaleDateString('en-US', options);
+    const options = { year: 'numeric', month: 'long', day: 'numeric',hour: "numeric",
+    minute: "numeric",
+    second: "numeric" };
+const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+    console.log("Great Job! You completed todo: ", todoId, "on: ", formattedDate);
 
     axios({
         method: "PUT",
@@ -155,6 +145,11 @@ function markComplete(event, todoId, isComplete, completedAt) {
 
 function deleteTodo(event, todoId) {
     event.preventDefault()
+    let date = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric',hour: "numeric",
+    minute: "numeric",
+    second: "numeric" };
+const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
     Swal.fire({
         title: 'Are you sure?',
         text: `This will permanently delete todo #${todoId}`,
@@ -177,7 +172,8 @@ function deleteTodo(event, todoId) {
                 .then(response => {
                     // Handle successful deletion
                     if (response.status === 200) {
-                        Swal.fire('Deleted!', `Todo #${todoId} has been deleted!`, 'success');
+                        Swal.fire('Deleted!', `Todo #${todoId} has been deleted at ${formattedDate}!`, 'success');
+                        console.log(`Todo #${todoId} has been deleted at ${formattedDate}!`)
                         getTodos()
                     } else {
                         // Handle deletion error

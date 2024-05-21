@@ -1,4 +1,4 @@
-describe('SQL TO-DO List', () => {
++ describe('SQL TO-DO List', () => {
   beforeEach(async () => {
     // Silence console.log statements for cleaner test output:
     console.log = () => {}
